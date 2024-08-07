@@ -1,5 +1,5 @@
 
-  <div class="row mt-5" *ngIf="user">
+  <div class="row mt-5" *ngIf="user" >
     <div class="col-12 text-center ">
       <button mat-button [routerLink]="'../'"> {{"<"}} Back to users</button>
     </div>
@@ -13,4 +13,7 @@
       <img class="img-fluid" src="{{user.avatar}}" alt="{{user.first_name}}">
       
   </div>
-  <app-loading *ngIf="!user"></app-loading>
+
+    <h2 *ngIf="!user">Error with id</h2>
+
+  

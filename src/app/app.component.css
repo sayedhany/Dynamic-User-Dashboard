@@ -1,0 +1,27 @@
+@keyframes enter {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes exit {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(root) {
+  animation: exit 0.3s ease 0s 1 normal forwards;
+}
+
+::view-transition-new(root) {
+  animation: enter 0.3s ease 0s 1 normal forwards;
+}

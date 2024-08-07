@@ -4,7 +4,7 @@ import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 import { MatButton } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
-import { NgIf } from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
@@ -22,5 +22,6 @@ export class UserDetailsComponent implements OnInit {
     this.usersSrv.getUser(id).subscribe((user: any) => {
       this.user = user.data;
     });
+    console.log(this.user, 'from');
   }
 }

@@ -7,3 +7,6 @@ img {
   margin: auto;
   margin-bottom: 20px;
 }
+mat-card:hover {
+  filter: brightness(0.9);
+}

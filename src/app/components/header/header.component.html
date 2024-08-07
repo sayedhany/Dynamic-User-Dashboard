@@ -1,15 +1,15 @@
 <header class="header w-100  p-3 pb-0">
   <div class="container">
     <div class="row">
-      <div class="col-3 d-flex align-items-center ">
+      <div class="col-4 d-none d-md-flex align-items-center ">
         <p class="header_logo fs-3">Sayed Hany</p>
       </div>
-      <div class="col-6 d-flex align-items-center justify-content-center">
+      <div class=" col-10 col-md-8 d-flex align-items-center justify-content-center">
         <mat-form-field class="search-field w-100 ">
           <mat-label>Search User</mat-label>
           <input matInput type="text" [(ngModel)]="value" (keyup.enter)="onSearch()" >
           @if (value) {
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="value='';onSearch()">
               <mat-icon>close</mat-icon>
             </button>
           }
