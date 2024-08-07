@@ -1,7 +1,6 @@
-
-  <div class="row mt-5" *ngIf="user" >
+<div class="row mt-5" *ngIf="user" >
     <div class="col-12 text-center ">
-      <button mat-button [routerLink]="'../'"> {{"<"}} Back to users</button>
+      <button mat-button  [routerLink]="'../'"> {{"<"}} Back to users</button>
     </div>
     <div class="col-12 text-center mb-4 mt-4">
       User Name: {{user.first_name}} {{user.last_name}}

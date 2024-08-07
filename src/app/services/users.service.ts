@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
+  finalize,
   Observable,
   of,
+  shareReplay,
   tap,
   throwError,
 } from 'rxjs';
@@ -19,8 +21,6 @@ export class UsersService {
   subject = new BehaviorSubject<any>(null);
   users$: Observable<any> = this.subject.asObservable();
   pages: number = 0;
-  errSub$ = new BehaviorSubject<boolean>(false);
-  error$: Observable<boolean> = this.errSub$.asObservable();
 
   constructor(private http: HttpClient, private loadingsrv: LoadingService) {
     this.getData(1);
@@ -47,16 +47,20 @@ export class UsersService {
       this.subject.next(cachedData);
       return of(cachedData);
     } else {
+      this.loadingsrv.loadingOn();
       const params = new HttpParams().set('page', page);
       return this.http
         .get(END_POINTS.USERS, { params })
         .pipe(
           tap((res: any) => {
             this.saveToCache(cacheKey, res);
-            this.errSub$.next(true);
-          })
+            this.subject.next(res);
+          }),
+          shareReplay()
         )
-        .subscribe();
+        .subscribe(() => {
+          this.loadingsrv.loadingOff();
+        });
     }
   }
 
@@ -71,10 +75,13 @@ export class UsersService {
     if (cachedUser) {
       return of(cachedUser);
     } else {
+      this.loadingsrv.loadingOn();
       return this.http.get(END_POINTS.USERS + '/' + id).pipe(
         tap((res: any) => {
           this.saveToCache(cacheKey, res);
-        })
+        }),
+        finalize(() => this.loadingsrv.loadingOff()),
+        shareReplay()
       );
     }
   }

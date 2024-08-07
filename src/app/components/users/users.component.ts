@@ -31,13 +31,8 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class UsersComponent implements OnInit {
   users$: Observable<any>;
-  pages: number = 0;
   constructor(public usersSrv: UsersService) {}
-  ngOnInit(): void {
-    this.users$ = this.usersSrv
-      .getUsersList()
-      .pipe(tap((res) => (this.pages = res?.total)));
-  }
+  ngOnInit(): void {}
   onPageChage($event: PageEvent) {
     this.usersSrv.getData($event.pageIndex + 1);
   }

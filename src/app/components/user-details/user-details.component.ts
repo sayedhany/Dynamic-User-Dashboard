@@ -23,5 +23,6 @@ export class UserDetailsComponent implements OnInit {
       this.user = user.data;
     });
     console.log(this.user, 'from');
+    
   }
 }

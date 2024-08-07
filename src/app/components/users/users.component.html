@@ -1,15 +1,12 @@
 <h1 class="text-center m-3">Users</h1>
 <div class="row">
-  @for(user of (users$| async)?.data; track user.id){
+  @for(user of (usersSrv.users$| async)?.data ; track user.id){
    <div class="col-md-4 m-auto"><app-user-card [user]="user"></app-user-card></div>
   }
   @empty {
     <h2 class="text-bg-danger text-center">No Users to display</h2>
   }
-  @if(!(users$| async)?.data && !usersSrv.error$){
-    <app-loading></app-loading>
-  }
-  <mat-paginator [length]="pages"
+  <mat-paginator [length]="(usersSrv.users$| async)?.total"
               [pageSize]="1"
               [pageSizeOptions]="[]"
               (page)="onPageChage($event)"

@@ -14,4 +14,5 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class UserCardComponent {
   @Input() user: User;
+  constructor() {}
 }
