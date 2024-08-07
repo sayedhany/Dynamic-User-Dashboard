@@ -1,0 +1,16 @@
+
+  <div class="row mt-5" *ngIf="user">
+    <div class="col-12 text-center ">
+      <button mat-button [routerLink]="'../'"> {{"<"}} Back to users</button>
+    </div>
+    <div class="col-12 text-center mb-4 mt-4">
+      User Name: {{user.first_name}} {{user.last_name}}
+    </div>
+    <div class="col-12 text-center mb-4">
+      Email: {{user.email}}
+    </div>
+    <div class="col-md-12 text-center ">
+      <img class="img-fluid" src="{{user.avatar}}" alt="{{user.first_name}}">
+      
+  </div>
+  <app-loading *ngIf="!user"></app-loading>

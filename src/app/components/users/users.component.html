@@ -1,0 +1,19 @@
+<h1 class="text-center m-3">Users</h1>
+<div class="row">
+  @for(user of (users$| async)?.data; track user.id){
+   <div class="col-md-4 m-auto"><app-user-card [user]="user"></app-user-card></div>
+  }
+  @empty {
+    <h2>No Users</h2>
+  }
+  @if(!(users$| async)?.data){
+    <app-loading></app-loading>
+  }
+  <mat-paginator [length]="pages"
+              [pageSize]="1"
+              [pageSizeOptions]="[]"
+              (page)="onPageChage($event)"
+              aria-label="Select page">
+</mat-paginator>
+</div>
+

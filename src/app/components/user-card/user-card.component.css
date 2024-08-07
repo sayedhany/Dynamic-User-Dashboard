@@ -1,0 +1,9 @@
+.user-card {
+  text-align: center;
+  cursor: pointer;
+}
+img {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 20px;
+}
